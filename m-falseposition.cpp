@@ -35,3 +35,38 @@ modified-false postion methode Formula:
 x_new = (x1*f2 - x2*f1) / (f2 - f1);
 Stopping criteria: |x_new - x_old| < tolerance
 */
+        while (true) {
+            double x_new = (x1*f2 - x2*f1) / (f2 - f1); //modified false postion formula.
+            f0 = f(x_new);
+
+            double rel_error = fabs(x_new - x0) / fabs(x_new);
+
+            cout << left << setw(6) << iter
+                 << setw(12) << x1
+                 << setw(12) << x2
+                 << setw(12) << x_new
+                 << setw(12) << f0
+                 << setw(12) << f1
+                 << setw(12) << f2
+                 << setw(16) << rel_error << endl;
+
+            if (fabs(f0) < tol || rel_error < tol) {
+                cout << "\nRoot found at x = " << x_new << " after " << iter << " iterations." << endl;
+                break;
+            }
+
+            if (f1 * f0 < 0) {
+                x2 = x_new;
+                f2 = f0 / 2;   // update
+            } else {
+                x1 = x_new;
+                f1 = f0 / 2;
+            }
+
+            x0 = x_new;
+            iter++;
+        }
+
+        return 0;
+    }
+
