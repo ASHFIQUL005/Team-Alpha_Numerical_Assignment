@@ -7,6 +7,55 @@ using namespace std;
 double f(double x) {
     return exp(x) - 3*x;
 }
+/* ================= Secant Method ================= */
+double secant(double x1, double x2, double tol, int maxIter, int &iterCount) {
+        double f1 = f(x1), f2 = f(x2);
+    double x0;
+
+    cout << "\n--- Secant Method ---\n";
+    cout << left << setw(6) << "Iter"
+         << setw(12) << "x1"
+         << setw(12) << "x2"
+         << setw(12) << "f1"
+         << setw(12) << "f2"
+         << setw(12) << "x0"
+         << setw(12) << "f(x0)"
+         << setw(20) << "Relative error" << endl;
+
+    for (iterCount = 1; iterCount <= maxIter; iterCount++) {
+        if (fabs(f2 - f1) < 1e-12) {
+            cout << "Division by zero risk!" << endl;
+            return NAN;
+        }
+
+        x0 = x2 - f2 * (x2 - x1) / (f2 - f1);
+        double f0 = f(x0);
+        double error = fabs(x0 - x2) / fabs(x0);
+
+        cout << left << setw(6) << iterCount
+             << setw(12) << x1
+             << setw(12) << x2
+             << setw(12) << f1
+             << setw(12) << f2
+             << setw(12) << x0
+             << setw(12) << f0
+             << setw(20) << error << endl;
+
+        if (fabs(f0) < tol || error < tol) {
+            cout << "\nRoot (Secant Method) = " << x0
+                 << " after " << iterCount << " iterations.\n";
+            return x0;
+        }
+
+        // update
+        x1 = x2; f1 = f2;
+        x2 = x0; f2 = f0;
+    }
+
+    cout << "Max iterations reached in Secant Method.\n";
+
+    return x0;
+}
 
 /* ================= Main Program ================= */
 int main() {
@@ -34,3 +83,4 @@ int main() {
 
     return 0;
 }
+
