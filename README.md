@@ -33,3 +33,7 @@ The goal is to understand their implementation, performance, and **convergence b
    - Run `compare.cpp` → Compares both methods side by side.
 
 ---
+
+
+### Contributors
+[![Contributors](https://contrib.rocks/image?repo=ASHFIQUL005/Team-Alpha_Numerical_Assignment)](https://github.com/ASHFIQUL005/Team-Alpha_Numerical_Assignment/graphs/contributors)
