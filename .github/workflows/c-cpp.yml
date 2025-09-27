@@ -13,8 +13,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build
-      run: make all
     - name: Configure CMake
       run: cmake .
     - name: make
@@ -23,3 +21,5 @@ jobs:
       run: make check
     - name: make distcheck
       run: make distcheck
+    - name: Build
+      run: make all
